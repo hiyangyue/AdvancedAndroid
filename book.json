@@ -1,6 +1,6 @@
 {
     "author": "Yue Yang",
-    "description": "Android",
+    "description": "Android ",
     "extension": null,
     "generator": "site",
     "isbn": null,
@@ -13,7 +13,8 @@
             "weibo": null
         },
         "sidebar": {
-            "YueYang": "https://github.com/hiyangyue"
+            "About Me": "https://github.com/hiyangyue",
+            "YueYang's Blog": "hiyangyue.github.io"
         }
     },
     "output": null,
@@ -30,7 +31,16 @@
         "pageNumbers": false,
         "paperSize": "a4"
     },
-    "plugins": [],
+    "plugins": [
+        "disqus",
+        "anchors",
+        "codeblock-filename"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "introducetogitbook"
+        }
+    },
     "title": "AndroidNote",
     "variables": {}
 }
