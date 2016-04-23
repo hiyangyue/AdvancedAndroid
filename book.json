@@ -6,6 +6,7 @@
     "generator": "site",
     "isbn": null,
     "links": {
+        "gitbook": false,
         "sharing": {
             "all": null,
             "facebook": null,
