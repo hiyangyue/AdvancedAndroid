@@ -1,6 +1,6 @@
 {
     "author": "Yue Yang",
-    "description": "Android ",
+    "description": "Advanced Tutorial of Android",
     "extension": null,
     "generator": "site",
     "isbn": null,
@@ -13,8 +13,7 @@
             "weibo": null
         },
         "sidebar": {
-            "About Me": "https://github.com/hiyangyue",
-            "YueYang's Blog": "hiyangyue.github.io"
+            
         }
     },
     "output": null,
@@ -31,16 +30,7 @@
         "pageNumbers": false,
         "paperSize": "a4"
     },
-    "plugins": [
-        "disqus",
-        "anchors",
-        "codeblock-filename"
-    ],
-    "pluginsConfig": {
-        "disqus": {
-            "shortName": "introducetogitbook"
-        }
-    },
-    "title": "AndroidNote",
+    "plugins": [],
+    "title": "Android进阶",
     "variables": {}
 }
