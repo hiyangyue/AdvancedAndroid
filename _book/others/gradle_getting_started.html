@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Gradle : build.gradle入门 | Android进阶</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="Yue Yang">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../others/as_speed_up.html" />
+    
+    
+    <link rel="prev" href="../index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.1"
+        data-chapter-title="Gradle : build.gradle入门"
+        data-filepath="others/gradle_getting_started.md"
+        data-basepath=".."
+        data-revision="Sun Apr 24 2016 20:40:25 GMT+0800 (中国标准时间)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> [Java]</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> [Android进阶]</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> [其他]</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.1" data-path="others/gradle_getting_started.html">
+            
+                
+                    <a href="../others/gradle_getting_started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Gradle : build.gradle入门
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="others/as_speed_up.html">
+            
+                
+                    <a href="../others/as_speed_up.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Android Studio编译加速
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Android进阶</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="gradle--buildgradle&#x5165;&#x95E8;">Gradle : build.gradle&#x5165;&#x95E8;</h1>
+<h3 id=""> </h3>
+<p>AS&#x5728;&#x521B;&#x5EFA;&#x65B0;Project&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x4E09;&#x4E2A;gradle&#x6587;&#x4EF6;&#xFF0C;&#x4E24;&#x4E2A;build.gradle&#xFF0C;&#x4E00;&#x4E2A;setting.gradle&#xFF0C;&#x7ED3;&#x6784;&#x56FE;&#x5982;&#x4E0B;</p>
+<pre><code>MyApp
+  &#x251C;&#x2500;&#x2500; build.gradle
+  &#x251C;&#x2500;&#x2500; settings.gradle
+  &#x2514;&#x2500;&#x2500; app
+       &#x2514;&#x2500;&#x2500; build.gradle
+</code></pre><h3 id="settinggradle">setting.gradle</h3>
+<p>settubg,gradle&#x5B9A;&#x4E49;&#x4E86;&#x54EA;&#x4E2A;&#x6A21;&#x5757;&#x5C06;&#x4F1A;&#x88AB;&#x6784;&#x5EFA;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x6784;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#xFF0C;project&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4E2A;app&#x7684;module&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x662F;&#x8FD9;&#x6837;&#x5B50;&#x7684; &#xFF1A;</p>
+<pre><code>include : &quot;app &quot;
+</code></pre><p>&#x6DFB;&#x52A0;project&#x4E2D;&#x7684;&#x5176;&#x4ED6;module&#xFF0C;&#x53EA;&#x8981;&#x5728;setting.gradle&#x4E2D;&#x52A0;&#x5165;module&#x7684;&#x540D;&#x79F0;</p>
+<pre><code>include : &quot;app&quot; , &quot;xxx&quot;
+</code></pre><h3 id="&#x6839;&#x76EE;&#x5F55;&#x7684;buildgradle">&#x6839;&#x76EE;&#x5F55;&#x7684;build.gradle</h3>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;build.gralde&#x5982;&#x4E0B; &#xFF1A; </p>
+<pre><code>buildscript {
+    repositories {
+        jcenter ()
+    }
+
+    dependencies {
+        classpath &apos;com.android.tools.build:gradle:2.0&apos;
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter ()
+    }
+}
+</code></pre><p><strong>buildscript</strong> &#x5B9A;&#x4E49;&#x4E86;&#x5168;&#x5C40;&#x7684;&#x76F8;&#x5173;&#x5C5E;&#x6027;&#xFF0C;repositories&#x5B9A;&#x4E49;&#x4E86;&#x4ED3;&#x5E93;&#x6E90;&#xFF0C;&#x9ED8;&#x8BA4;jcenter() &#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x6C42;&#x6DFB;&#x52A0;maven&#x4ED3;&#x5E93;&#x7B49;&#x7B49;&#x3002;</p>
+<p><strong>depedencies</strong> &#x8868;&#x793A;Android Studio Gradle&#x7684;&#x7248;&#x672C;&#xFF0C;&#x4E00;&#x822C;&#x4E0D;&#x9700;&#x8981;&#x66F4;&#x6539;&#x3002;</p>
+<p><strong>allprojects</strong> &#x7528;&#x6765;&#x5B9A;&#x4E49;&#x4E0D;&#x540C;module&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x9ED8;&#x8BA4;&#x8868;&#x793A;&#x65F6; &#x4E3A;&#x6BCF;&#x4E2A;module&#x8BBE;&#x7F6E;jcenter()&#x4ED3;&#x5E93;&#x4F9D;&#x8D56;</p>
+<h3 id="module&#x4E2D;&#x7684;buildgradle">module&#x4E2D;&#x7684;build.gradle</h3>
+<p>module&#x4E2D;&#x9ED8;&#x8BA4;&#x7684;build.gradle&#x5E94;&#x8BE5;&#x662F;&#x8FD9;&#x6837;&#x5B50;&#x7684; :</p>
+<pre><code>apply plugin: &apos;com.android.application&apos;
+
+android {
+    compileSdkVersion 23            //&#x7528;&#x4E8E;&#x7F16;&#x8BD1;&#x7684;SDK&#x7248;&#x672C;
+    buildToolsVersion &quot;23.0.3&quot;
+
+    defaultConfig {
+        applicationId &quot;com.hiyangyue.test&quot;   //app&#x7684;&#x7A0B;&#x5E8F;&#x5305;&#x540D;
+        minSdkVersion 19                     //&#x6700;&#x4F4E;&#x652F;&#x6301;Android&#x7248;&#x672C;
+        targetSdkVersion 23                  //&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E0B;&#x7684;Android&#x7248;&#x672C;
+        versionCode 1                        //&#x7248;&#x672C;&#x53F7;
+        versionName &quot;1.0&quot;                    //&#x7248;&#x672C;&#x540D;
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false             //&#x662F;&#x5426;&#x542F;&#x7528;&#x6DF7;&#x6DC6;
+            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;
+        }
+    }
+}
+
+//&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x7684;&#x4F9D;&#x8D56;
+dependencies {
+    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])
+    testCompile &apos;junit:junit:4.12&apos;
+    compile &apos;com.android.support:appcompat-v7:23.3.0&apos;
+}
+</code></pre><h3 id="&#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x53D8;&#x91CF;">&#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h3>
+<p>&#x5728;Projects&#x7684;build.gradle&#x4E2D;&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</p>
+<pre><code>ext {
+    compileSdkVersion = &quot;23&quot;
+    buildToolsVersion = &quot;23.0.2&quot;
+    miniSdkVersion = &quot;14&quot;
+    targetSdkVersion = &quot;23&quot;
+}
+</code></pre><p> module&#x4E2D;&#x5F15;&#x7528;</p>
+<pre><code>android { 
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+      minSdkVersion rootProject.ext.minSdkVersion
+      targetSdkVersion rootProject.ext.targetSdkVersion
+  }
+}
+</code></pre><hr>
+<p>&#x53C2;&#x8003; </p>
+<ul>
+<li>[Android Studio &#x5E38;&#x7528;&#x529F;&#x80FD;&#x4ECB;&#x7ECD;]<a href="http://ask.android-studio.org/?/article/23" target="_blank">http://ask.android-studio.org/?/article/23</a>)</li>
+<li><a href="https://segmentfault.com/a/1190000004234712" target="_blank">Gradle for Android &#x7B2C;&#x4E8C;&#x7BC7;( Build.gradle&#x5165;&#x95E8; )</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../others/as_speed_up.html" class="navigation navigation-next " aria-label="Next page: Android Studio编译加速"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,4 +1,4 @@
-# Gradle编译加速
+# Android Studio编译加速
 
 #### 并行编译守护进程
 
@@ -13,7 +13,7 @@
   (如果项目设置 ，修改项目下的gradle.propertites文件即可)
 
 
-#### 优化编译时VM大小
+#### 扩大运行内存
 在Android Studio的安装目 : ...\AndroidStudio\bin，有两个文件
 
 studio.exe.vmoptions
