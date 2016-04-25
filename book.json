@@ -5,6 +5,12 @@
     "generator": "site",
     "isbn": null,
     "links": {
+        
+        "home": null,
+        "about": false,
+        "issues": false,
+        "contribute": false,
+        
         "sharing": {
             "all": null,
             "facebook": null,
@@ -31,6 +37,6 @@
         "paperSize": "a4"
     },
     "plugins": [],
-    "title": "Android进阶",
+    "title": "Advanced Android",
     "variables": {}
 }
