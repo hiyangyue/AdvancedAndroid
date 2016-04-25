@@ -45,24 +45,25 @@ Gradle时基于Groovy语言，面向Java应用为主的一种项目构建工具�
 签名生成之后，在对应module下的build.gradle文件下
 
     
-android {
-    ...
-    defaultConfig { ... }
-    signingConfigs {
-        release {
-            storeFile file("myreleasekey.keystore")
-            storePassword "password"
-            keyAlias "MyReleaseKey"
-            keyPassword "password"
+    android {
+        ...
+        defaultConfig { ... }
+        signingConfigs {
+            release {
+                storeFile file("myreleasekey.keystore")
+                storePassword "password"
+                keyAlias "MyReleaseKey"
+                keyPassword "password"
+            }
+        }
+    
+        buildTypes {
+            release {
+                ...
+                signingConfig signingConfigs.release
+            }
         }
     }
-    buildTypes {
-        release {
-            ...
-            signingConfig signingConfigs.release
-        }
-    }
-}
 
 ---
 参考
