@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Android Studio编译加速 | Advanced Android</title>
+        <title>Gradle : 构建 | Advanced Android</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,8 +37,10 @@
         
     
     
+    <link rel="next" href="../others/gradle_rely.html" />
     
-    <link rel="prev" href="../others/gradle_rely.html" />
+    
+    <link rel="prev" href="../others/gradle_getting_started.html" />
     
 
         
@@ -47,9 +49,9 @@
         
         
     <div class="book"
-        data-level="3.4"
-        data-chapter-title="Android Studio编译加速"
-        data-filepath="others/as_speed_up.md"
+        data-level="3.2"
+        data-chapter-title="Gradle : 构建"
+        data-filepath="others/gradle_build.md"
         data-basepath=".."
         data-revision="Mon Apr 25 2016 18:02:28 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -117,7 +119,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="others/gradle_build.html">
+        <li class="chapter active" data-level="3.2" data-path="others/gradle_build.html">
             
                 
                     <a href="../others/gradle_build.html">
@@ -147,7 +149,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.4" data-path="others/as_speed_up.html">
+        <li class="chapter " data-level="3.4" data-path="others/as_speed_up.html">
             
                 
                     <a href="../others/as_speed_up.html">
@@ -200,68 +202,61 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="android-studio&#x7F16;&#x8BD1;&#x52A0;&#x901F;">Android Studio&#x7F16;&#x8BD1;&#x52A0;&#x901F;</h1>
-<h4 id="&#x5E76;&#x884C;&#x7F16;&#x8BD1;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;">&#x5E76;&#x884C;&#x7F16;&#x8BD1;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;</h4>
-<p>  &#x5168;&#x5C40;&#x8BBE;&#x7F6E; &#xFF1A;&#x5728;./../gradle&#x4E2D;&#x521B;&#x5EFA; gradle.propertites</p>
-<pre><code>org.gradle.daemon=true
-org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m 
--XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
-org.gradle.parallel=true
-org.gradle.configureondemand=true
-</code></pre><p>  (&#x5982;&#x679C;&#x9879;&#x76EE;&#x8BBE;&#x7F6E; &#xFF0C;&#x4FEE;&#x6539;&#x9879;&#x76EE;&#x4E0B;&#x7684;gradle.propertites&#x6587;&#x4EF6;&#x5373;&#x53EF;)</p>
-<h4 id="&#x6269;&#x5927;&#x8FD0;&#x884C;&#x5185;&#x5B58;">&#x6269;&#x5927;&#x8FD0;&#x884C;&#x5185;&#x5B58;</h4>
-<p>&#x5728;Android Studio&#x7684;&#x5B89;&#x88C5;&#x76EE; : ...\AndroidStudio\bin&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;</p>
-<p>studio.exe.vmoptions</p>
-<p>studio64.exe.vmoptions,&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x7740;32&#x548C;64&#x4F4D;&#xFF0C;&#x4F7F;&#x7528;&#x7F16;&#x8BD1;&#x5DE5;&#x5177;&#x6253;&#x5F00;&#xFF0C;&#x4FEE;&#x6539;&#x7F16;&#x8BD1;&#x5185;&#x5B58;
-&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x53C2;&#x6570; :</p>
-<pre><code>-Xms512m
--Xmx2048m
--XX:MaxPermSize=512m
-</code></pre><h4 id="&#x5F15;&#x7528;&#x672C;&#x5730;&#x7684;aar">&#x5F15;&#x7528;&#x672C;&#x5730;&#x7684;aar</h4>
-<p>&#x628A;aar&#x6587;&#x4EF6;&#x653E;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x5F55;&#x91CC;&#xFF0C;&#x6BD4;&#x5982;libs&#xFF0C;&#x63A5;&#x7740;&#x5728;build.gradle&#x4E2D;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x5185;&#x5BB9; &#xFF1A; </p>
-<pre><code>repositories {
-    flatDir {
-        dirs &apos;libs&apos; //this way we can find the .aar file in libs folder
+                        <h1 id="gralde--&#x6784;&#x5EFA;">Gralde : &#x6784;&#x5EFA;</h1>
+<p>Gradle&#x65F6;&#x57FA;&#x4E8E;Groovy&#x8BED;&#x8A00;&#xFF0C;&#x9762;&#x5411;Java&#x5E94;&#x7528;&#x4E3A;&#x4E3B;&#x7684;&#x4E00;&#x79CD;&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x3002;Android Studio&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;Gradle&#x5DE5;&#x5177;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;project&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x7ED3;&#x6784;&#x662F;&#x8FD9;&#x6837;&#x5B50;&#x7684; :</p>
+<pre><code>rootProject/
+    &#x251C;&#x2500;&#x2500; gradlew
+    &#x251C;&#x2500;&#x2500; gradlew.bat
+    &#x2514;&#x2500;&#x2500; gradle/wrapper/
+    &#x251C;&#x2500;&#x2500; gradle-wrapper.jar
+    &#x2514;&#x2500;&#x2500; gradle-wrapper.properties
+</code></pre><h3 id="gradle-build&#x547D;&#x4EE4;">Gradle Build&#x547D;&#x4EE4;</h3>
+<ul>
+<li>assemble : &#x9488;&#x5BF9;&#x67D0;&#x4E2A;&#x7248;&#x672C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;apk</li>
+<li>clean : &#x5220;&#x9664;&#x6240;&#x6709;&#x7684;&#x6784;&#x5EFA;&#x4EFB;&#x52A1;(&#x5305;&#x542B;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x53F7;&#x7684;apk&#x6587;&#x4EF6;)</li>
+<li>check : &#x6267;&#x884C;Lint&#x68C0;&#x67E5;&#xFF0C;&#x5982;&#x679C;Lint&#x68C0;&#x67E5;&#x5230;&#x9519;&#x8BEF;&#xFF0C;&#x5219;&#x505C;&#x6B62;&#x6267;&#x884C;&#x811A;&#x672C;</li>
+<li>build : &#x540C;&#x65F6;&#x6267;&#x884C;assemble&#xFF0C;check&#x547D;&#x4EE4;</li>
+<li>connectedCheck : &#x6267;&#x884C;&#x6D4B;&#x8BD5;&#x4EFB;&#x52A1;</li>
+<li>deviceCheck : &#x6267;&#x884C;&#x5728;&#x8FDC;&#x7A0B;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x6D4B;&#x8BD5;</li>
+<li>installDebug : &#x5B89;&#x88C5;debug&#x7248;&#x672C;</li>
+<li>installRelease : &#x5B89;&#x88C5;release&#x7248;&#x672C;</li>
+<li>uninstallDebug : &#x5378;&#x8F7D;debug&#x7248;&#x672C;</li>
+<li>uninstallRelease : &#x5378;&#x8F7D;release&#x7248;&#x672C;</li>
+<li>tasks :&#x67E5;&#x770B;&#x5F53;&#x524D;&#x53EF;&#x6784;&#x5EFA;&#x7684;&#x6240;&#x6709;task</li>
+<li>-v : &#x67E5;&#x770B;&#x5F53;&#x524D;&#x7684;gradle&#x7248;&#x672C;</li>
+</ul>
+<p>&#x4F7F;&#x7528;&#x65B9;&#x6CD5; &#xFF1A; gradlew + &#x547D;&#x4EE4;, &#x6BD4;&#x5982;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;debug&#x7248;&#x672C;&#x7684;apk</p>
+<pre><code>gradlew assembleDebug
+</code></pre><h3 id="&#x6784;&#x5EFA;&#x5E26;&#x7B7E;&#x540D;&#x7248;&#x672C;">&#x6784;&#x5EFA;&#x5E26;&#x7B7E;&#x540D;&#x7248;&#x672C;</h3>
+<h4 id="&#x751F;&#x6210;keystore&#x6587;&#x4EF6;">&#x751F;&#x6210;keystore&#x6587;&#x4EF6;</h4>
+<p> &#x5728;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;</p>
+<pre><code>keytool -genkey -v -keystore myreleasekey.keystore
+</code></pre><p> &#x6839;&#x636E;&#x63D0;&#x793A;&#x8BBE;&#x7F6E;&#x76F8;&#x5E94;&#x7684;&#x4FE1;&#x606F;,&#x5373;&#x53EF;</p>
+<p>&#x6216;&#x8005;&#x4E00;&#x6B21;&#x70B9;&#x51FB;Build -&gt; Generate Signed APK&#xFF0C;&#x6839;&#x636E;&#x63D0;&#x793A;&#x8F93;&#x5165;&#x76F8;&#x5E94;&#x7684;&#x4FE1;&#x606F;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x7B7E;&#x540D;&#x751F;&#x6210;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x5BF9;&#x5E94;module&#x4E0B;&#x7684;build.gradle&#x6587;&#x4EF6;&#x4E0B;</p>
+<pre><code>android {
+    ...
+    defaultConfig { ... }
+    signingConfigs {
+        release {
+            storeFile file(&quot;myreleasekey.keystore&quot;)
+            storePassword &quot;password&quot;
+            keyAlias &quot;MyReleaseKey&quot;
+            keyPassword &quot;password&quot;
+        }
+    }
+
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
     }
 }
-</code></pre><p>&#x4E4B;&#x540E;&#x5728;gradle&#x4E2D;&#x5F15;&#x7528;&#x5373;&#x53EF;</p>
-<pre><code>dependencies {
-    compile(name:&apos;test&apos;, ext:&apos;aar&apos;)
-}
-</code></pre><h4 id="&#x6253;&#x5F00;dex&#x589E;&#x91CF;&#x7F16;&#x8BD1;">&#x6253;&#x5F00;dex&#x589E;&#x91CF;&#x7F16;&#x8BD1;</h4>
-<pre><code>dexOptions {
-    incremental true
-}
-</code></pre><h4 id="&#x4F7F;&#x7528;&#x56FA;&#x5B9A;&#x7684;&#x4F9D;&#x8D56;&#x5E93;&#x7248;&#x672C;">&#x4F7F;&#x7528;&#x56FA;&#x5B9A;&#x7684;&#x4F9D;&#x8D56;&#x5E93;&#x7248;&#x672C;</h4>
-<p>  &#x65E2;&#x7136;&#x7528;&#x5230;&#x5E93;&#xFF0C;&#x5C31;&#x4F1A;&#x9047;&#x5230;&#x5E93;&#x7248;&#x672C;&#x548C;&#x5347;&#x7EA7;id&#x95EE;&#x9898;&#xFF0C;&#x4F7F;&#x7528;&#x81EA;&#x52A8;&#x5347;&#x7EA7;&#x6700;&#x65B0;&#x7684;&#x5E93;&#x6709;&#x4E24;&#x4E2A;&#x574F;&#x5904;</p>
-<ol>
-<li>&#x5982;&#x679C;&#x65B0;&#x7684;&#x5E93;&#x63A5;&#x53E3;&#x6539;&#x4E86;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x9002;&#x914D;</li>
-<li>&#x5982;&#x679C;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x6BD4;&#x8F83;&#x5DEE;&#xFF0C;&#x62C9;&#x53BB;&#x6700;&#x65B0;&#x7684;&#x5E93;&#x5219;&#x4F1A;&#x5F71;&#x54CD;&#x7F16;&#x8BD1;&#x7684;&#x901F;&#x5EA6;</li>
-</ol>
-<p>&#x5176;&#x4E2D;maven&#x5E93;&#x7684;&#x4F9D;&#x8D56;&#x7BA1;&#x7406;&#x652F;&#x6301;&#x4E00;&#x79CD;&#x52A8;&#x6001;&#x7248;&#x672C;&#x7684;&#x65B9;&#x5F0F;&#x3002;
-&#x5982;&#x679C;&#x4F9D;&#x8D56;&#x67D0;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x5E93;&#xFF0C;&#x53EF;&#x4EE5;&#x5199;&#x6210; &#xFF1A;</p>
-<pre><code>dependenies {
-  compile &apos;com.google.code.gson:gson:2.2.1&apos;
-}
-</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x4F9D;&#x8D56;&#x5177;&#x4F53;&#x7684;&#x5E93;&#xFF0C;&#x60F3;&#x6BCF;&#x6B21;&#x62C9;&#x53D6;&#x6700;&#x65B0;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5199;&#x6210;</p>
-<pre><code>dependenies {
-  compile &apos;com.google.code.gson:gson:2.&#xFF0B;&apos;
-}
-</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x5199;&#x6210;</p>
-<pre><code>  dependenies {
-    compile &apos;com.google.code.gson:gson:&#xFF0B;&apos;
-  }
-</code></pre><h4 id="&#x4F7F;&#x7528;offline-mode">&#x4F7F;&#x7528;Offline Mode</h4>
-<p>&#x6BCF;&#x6B21;&#x542F;&#x52A8;&#x90FD;&#x4F1A;&#x6709;&#x8054;&#x7F51;&#x68C0;&#x6D4B;&#x4F9D;&#x8D56;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5230;&#x4E86;&#x6700;&#x65B0;&#x7248;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x9700;&#x6C42;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E0D;&#x7F3A;&#x66F4;&#x65B0;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;Android Studio&#x4E2D;&#x9009;&#x7684;offline&#x6A21;&#x5F0F;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x4F1A;&#x53BB;&#x66F4;&#x65B0;&#x4E86;&#x3002;</p>
-<h4 id="&#x5F00;&#x542F;instant-run">&#x5F00;&#x542F;Instant run</h4>
-<h4 id="&#x4F7F;&#x7528;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;gradle">&#x4F7F;&#x7528;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;Gradle</h4>
-<hr>
-<p>&#x53C2;&#x8003; &#xFF1A;</p>
+</code></pre><hr>
+<p>&#x53C2;&#x8003;</p>
 <ul>
-<li><a href="http://www.figotan.org/2016/04/01/gradle-on-android-best-practise/" target="_blank">GRADLE&#x6784;&#x5EFA;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;</a></li>
-<li><a href="https://medium.com/@shelajev/6-tips-to-speed-up-your-gradle-build-3d98791d3df9#.2n2lsqalt" target="_blank">6 tips to speed up your Gradle build</a></li>
-<li><a href="https://segmentfault.com/a/1190000004044038" target="_blank">&#x5982;&#x4F55;&#x4F18;&#x5316; Android Studio &#x542F;&#x52A8;&#x3001;&#x7F16;&#x8BD1;&#x548C;&#x8FD0;&#x884C;&#x901F;&#x5EA6;&#xFF1F;</a></li>
-<li><a href="http://stormzhang.com/android/2015/03/01/android-reference-local-aar/" target="_blank">Android&#x6A21;&#x5757;&#x5316;&#x7F16;&#x7A0B;&#x4E4B;&#x5F15;&#x7528;&#x672C;&#x5730;&#x7684;aar</a></li>
+<li><a href="http://developer.android.com/tools/publishing/app-signing.html" target="_blank">Signing Your Apps</a></li>
 </ul>
 
                     
@@ -273,8 +268,10 @@ org.gradle.configureondemand=true
         </div>
 
         
-        <a href="../others/gradle_rely.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Gradle : 依赖管理、其他设置"><i class="fa fa-angle-left"></i></a>
+        <a href="../others/gradle_getting_started.html" class="navigation navigation-prev " aria-label="Previous page: Gradle : build.gradle入门"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../others/gradle_rely.html" class="navigation navigation-next " aria-label="Next page: Gradle : 依赖管理、其他设置"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
