@@ -2,6 +2,10 @@
 
 * [Java]
 * [Android进阶]
+* [ReadingNote]
+   - [Effectivie Java](readingnotes/effective_readme.md)
+   - [第二章 ：创建和销毁对象](readingnotes/effective_chapter2.md)
+   
 * [其他]
    - [Gradle : build.gradle入门](others/gradle_getting_started.md)
    - [Gradle : 构建](others/gradle_build.md)
